@@ -13,7 +13,6 @@
 	
     <nav>
         <ul>
-            
             <li><a href="index.html">Főoldal</a></li>
             <li></li>
             <li><a href="">Étlap</a></li>
@@ -27,10 +26,34 @@
     <div class="container">
         <main>
 
-            <h1>Ez a tartalom címe</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque odit aliquid ut, inventore voluptatum ducimus porro quae? Incidunt nobis recusandae minima aliquid iusto porro in!</p>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo molestiae in tempore perferendis expedita perspiciatis debitis asperiores eos quaerat ea fugit consequuntur quod inventore, saepe provident libero odio alias voluptatem corporis porro. Laborum, illo dolore!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quas optio possimus iusto mollitia quis cum, sequi illum veritatis debitis incidunt reiciendis minus necessitatibus dicta eos ut velit? Architecto illum perferendis debitis iure ex voluptas consequatur error possimus alias dolore quis quibusdam quo, voluptate aliquam ipsam assumenda libero doloribus odio!</p>
+            <div id="about-container">
+                <div id="about-left">
+                    <p>Név: FatherFood Inc.</p>
+                    <p>Cím: 6789 Kálló, Sátoros utca 17.</p>
+                    <p>Tel.: 06 70 777 7777</p>
+                </div>
+                <div id="about-right">
+                    <p>e-Mail: fatherfood@gmail.com</p>
+                    <p>Fax: 431616136</p>
+                    <p>adasasdasd</p>
+                </div>
+            </div>
+
+            <div id="googleMap" style="width:100%;height:400px;"></div>
+
+        <script>
+        function myMap() {
+        var mapProp= {
+        center:new google.maps.LatLng(47.48508648026142, 19.14639926049125),
+        zoom:5,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        }
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=&callback=myMap"></script>
+
+        
         </main>
         <aside>
 

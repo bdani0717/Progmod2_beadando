@@ -1,0 +1,5 @@
+Háttér: #D6CB7F
+Szöveg: #4C4818
+Menü: #4C4818
+Menüpont: #D6CB7F
+Oldalsáv: 50% fehér
