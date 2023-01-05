@@ -28,40 +28,48 @@
         <main>
 
             <h1>Foglalj asztalt!</h1>
-            <form action="" method="post">
+            <center>
+            <form action="controller.java" method="post">
                 <div id="desk-container">
                     <div class="booking">
                         <label for="name">Neve:</label>
-                        <input type="text" name="name" id="1">
+                        <input type="text" name="name" id="1" required>
                     </div>
                     <div class="booking">
                         <label for="email">e-Mail:</label>
-                        <input type="text" name="email" id="2">
+                        <input type="text" name="email" id="2" required>
                     </div>
                     <div class="booking">
                         <label for="phone">Telefonszám:</label>
-                        <input type="text" name="phone" id="3">
+                        <input type="text" name="phone" id="3" required>
                     </div>
                 </div>
-                <center>
+                <div>
+                    <label for="desk-type">Asztal méret:</label>
+                    <select name="desk-type" id="4" required>
+                        <option value="two">Kétszemélyes</option>
+                        <option value="three">Háromszemélyes</option>
+                        <option value="four">Négyszemélyes</option>
+                    </select>
+                </div>
                     <table>
                         <tr>
-                            <td>8:00-9:00 <input type="checkbox" name="" id="4"></td>
-                            <td>9:00-10:00 <input type="checkbox" name="" id="5"></td>
-                            <td>10:00-11:00 <input type="checkbox" name="" id="6"></td>
-                            <td>11:00-12:00 <input type="checkbox" name="" id="7"></td>
+                            <td>8:00-9:00 <input type="checkbox" name="" id="5"></td>
+                            <td>9:00-10:00 <input type="checkbox" name="" id="6"></td>
+                            <td>10:00-11:00 <input type="checkbox" name="" id="7"></td>
+                            <td>11:00-12:00 <input type="checkbox" name="" id="8"></td>
                         </tr>
                         <tr>
-                            <td>12:00-13:00 <input type="checkbox" name="" id="8"></td>
-                            <td>13:00-14:00 <input type="checkbox" name="" id="9"></td>
-                            <td>14:00-15:00 <input type="checkbox" name="" id="10"></td>
-                            <td>15:00-16:00 <input type="checkbox" name="" id="11"></td>
+                            <td>12:00-13:00 <input type="checkbox" name="" id="9"></td>
+                            <td>13:00-14:00 <input type="checkbox" name="" id="10"></td>
+                            <td>14:00-15:00 <input type="checkbox" name="" id="11"></td>
+                            <td>15:00-16:00 <input type="checkbox" name="" id="12"></td>
                         </tr>
                         <tr>
-                            <td class="menu-no-border">16:00-17:00 <input type="checkbox" name="" id="12"></td>
-                            <td class="menu-no-border">17:00-18:00 <input type="checkbox" name="" id="13"></td>
-                            <td class="menu-no-border">18:00-19:00 <input type="checkbox" name="" id="14"></td>
-                            <td class="menu-no-border">19:00-20:00 <input type="checkbox" name="" id="15"></td>
+                            <td class="menu-no-border">16:00-17:00 <input type="checkbox" name="" id="13"></td>
+                            <td class="menu-no-border">17:00-18:00 <input type="checkbox" name="" id="14"></td>
+                            <td class="menu-no-border">18:00-19:00 <input type="checkbox" name="" id="15"></td>
+                            <td class="menu-no-border">19:00-20:00 <input type="checkbox" name="" id="16"></td>
                         </tr>
                     </table>
                     <input type="submit" value="Küldés">
