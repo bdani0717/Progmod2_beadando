@@ -29,7 +29,7 @@
 
             <h1>Foglalj asztalt!</h1>
             <center>
-            <form action="controller.java" method="post">
+            <form action="post" method="controller.java">
                 <div id="desk-container">
                     <div class="booking">
                         <label for="name">Neve:</label>
@@ -53,6 +53,10 @@
                     </select>
                 </div>
                     <?php
+
+                    
+
+                    echo'
                     <table>
                         <tr>
                             <td>8:00-9:00 <input type="checkbox" name="" id="5"></td>
@@ -72,7 +76,7 @@
                             <td class="menu-no-border">18:00-19:00 <input type="checkbox" name="" id="15"></td>
                             <td class="menu-no-border">19:00-20:00 <input type="checkbox" name="" id="16"></td>
                         </tr>
-                    </table>
+                    </table>'
                     ?>
                     <input type="submit" value="Küldés">
                 </center>

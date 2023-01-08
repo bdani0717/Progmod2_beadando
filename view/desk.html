@@ -29,7 +29,7 @@
 
             <h1>Foglalj asztalt!</h1>
             <center>
-            <form action="controller.java" method="post">
+            <form action="post" method="controller.java">
                 <div id="desk-container">
                     <div class="booking">
                         <label for="name">Neve:</label>
@@ -44,34 +44,33 @@
                         <input type="text" name="phone" id="3" required>
                     </div>
                 </div>
-                <div>
-                    <label for="desk-type">Asztal méret:</label>
-                    <select name="desk-type" id="4" required>
-                        <option value="two">Kétszemélyes</option>
-                        <option value="three">Háromszemélyes</option>
-                        <option value="four">Négyszemélyes</option>
-                    </select>
+                <div style="display: flex; flex-direction: column;">
+                    <div>
+                        <label for="desktype">Asztal méret:</label>
+                        <select name="desk-type" id="4" required>
+                            <option value="two">Kétszemélyes</option>
+                            <option value="three">Háromszemélyes</option>
+                            <option value="four">Négyszemélyes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="timetable">Időpont:</label>
+                        <select name="time-table" id="5" required>
+                            <option value="two">8:00 - 9:00</option>
+                            <option value="two">9:00 - 10:00</option>
+                            <option value="two">10:00 - 11:00</option>
+                            <option value="two">11:00 - 12:00</option>
+                            <option value="two">12:00 - 13:00</option>
+                            <option value="two">13:00 - 14:00</option>
+                            <option value="two">14:00 - 15:00</option>
+                            <option value="two">15:00 - 16:00</option>
+                            <option value="two">16:00 - 17:00</option>
+                            <option value="two">17:00 - 18:00</option>
+                            <option value="two">18:00 - 19:00</option>
+                            <option value="two">19:00 - 20:00</option>
+                        </select>
+                    </div>
                 </div>
-                    <table>
-                        <tr>
-                            <td>8:00-9:00 <input type="checkbox" name="" id="5"></td>
-                            <td>9:00-10:00 <input type="checkbox" name="" id="6"></td>
-                            <td>10:00-11:00 <input type="checkbox" name="" id="7"></td>
-                            <td>11:00-12:00 <input type="checkbox" name="" id="8"></td>
-                        </tr>
-                        <tr>
-                            <td>12:00-13:00 <input type="checkbox" name="" id="9"></td>
-                            <td>13:00-14:00 <input type="checkbox" name="" id="10"></td>
-                            <td>14:00-15:00 <input type="checkbox" name="" id="11"></td>
-                            <td>15:00-16:00 <input type="checkbox" name="" id="12"></td>
-                        </tr>
-                        <tr>
-                            <td class="menu-no-border">16:00-17:00 <input type="checkbox" name="" id="13"></td>
-                            <td class="menu-no-border">17:00-18:00 <input type="checkbox" name="" id="14"></td>
-                            <td class="menu-no-border">18:00-19:00 <input type="checkbox" name="" id="15"></td>
-                            <td class="menu-no-border">19:00-20:00 <input type="checkbox" name="" id="16"></td>
-                        </tr>
-                    </table>
                     <input type="submit" value="Küldés">
                 </center>
             </form>
