@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Backend" />
+        <module name="beadando" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Backend" options="-endorseddirs C:\Users\W\Documents\UNI\UNI_2022_23_1\ProgMod2\csoport\Progmod2_beadando\Backend\target/endorsed" />
+      <module name="beadando" options="-endorseddirs C:\Users\W\Documents\UNI\UNI_2022_23_1\ProgMod2\beadando\target/endorsed" />
+    </option>
+  </component>
+</project>
