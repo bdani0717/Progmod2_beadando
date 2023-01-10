@@ -8,6 +8,10 @@ import org.json.JSONObject;
 import service.ReservationListService;
 import service.TableListService;
 
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.Date;
+
 /**
  *
  * @author 
@@ -15,6 +19,9 @@ import service.TableListService;
 @Path("jakartaee9")
 public class JakartaEE9Resource {
 
+    @GET
+    @Path("getTables")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getTables() {
         return Response
                 .ok(TableListService.getFreeTables().toString())
@@ -33,6 +40,18 @@ public class JakartaEE9Resource {
 
         return Response
                 .ok(obj.toString())
+                .build();
+    }
+
+    @GET
+    @Path("test")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response test() {
+
+        ReservationListService.add(new Reservation(1, 1, 18, "John", "john@email.com"));
+
+        return Response
+                .ok(TableListService.getFreeTables().toString())
                 .build();
     }
 }
