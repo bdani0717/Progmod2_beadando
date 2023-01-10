@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import view.TableView;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class TableListService {
 
@@ -18,29 +19,39 @@ public class TableListService {
 
     public static Boolean add(Table table) {
         try {
-            TableList tableList = readTableListFromXml(pathToXml);
+            TableList tableList = readTableListFromXml();
 
-            tableList.add(new Table(4, 4, TableStateEnum.Free));
+            tableList.add(table);
 
-            return saveTableListToXml(tableList, pathToXml);
+            return saveTableListToXml(tableList);
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return false;
     }
 
-    public static JSONArray getFreeTables() {
+    public static JSONArray getTables() {
         JSONArray freeTableList = new JSONArray();
 
         try {
-            TableList tableList = readTableListFromXml(pathToXml);
+            TableList tableList = readTableListFromXml();
 
             tableList.getList().forEach(table -> {
-                if(table.getTableState() == TableStateEnum.Free) {
-                    freeTableList.put(new TableView(table).getJson());
-                }
-            });
+                ArrayList<String> availability = new ArrayList<>();
 
+                for(int time = 8; time < 20; time++) {
+                    int index = time - 8;
+
+                    availability.add(index, TableStateEnum.Free.toString());
+                }
+
+                ReservationListService.getReservationsByTableId(table.getTableId()).getList().forEach(reservation -> {
+                    int index = reservation.getReservationTime() - 8;
+                    availability.set(index, TableStateEnum.Reserved.toString());
+                });
+
+                freeTableList.put(new TableView(table, availability).getJson());
+            });
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -50,16 +61,14 @@ public class TableListService {
 
     public static Boolean setTableState(Integer tableId, TableStateEnum state) {
         try {
-            TableList tableList = readTableListFromXml(pathToXml);
+            TableList tableList = readTableListFromXml();
 
             for(Table table : tableList.getList()) {
                 if(table.getTableId() == tableId) {
                     table.setTableState(state);
-                    break;
+                    return saveTableListToXml(tableList);
                 }
             }
-
-            return saveTableListToXml(tableList, pathToXml);
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -67,13 +76,13 @@ public class TableListService {
     }
 
 
-    private static TableList readTableListFromXml(String path) {
+    private static TableList readTableListFromXml() {
         TableList tableList;
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(TableList.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
-            tableList = (TableList) unmarshaller.unmarshal(new File(path));
+            tableList = (TableList) unmarshaller.unmarshal(new File(TableListService.pathToXml));
 
         } catch (Exception e) {
             tableList = new TableList();
@@ -83,12 +92,12 @@ public class TableListService {
         return tableList;
     }
 
-    private static Boolean saveTableListToXml(TableList tableList, String path) {
+    private static Boolean saveTableListToXml(TableList tableList) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(TableList.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
 
-            File file = new File(path);
+            File file = new File(TableListService.pathToXml);
             marshaller.marshal(tableList, file);
 
             return true;

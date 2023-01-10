@@ -1,16 +1,13 @@
 package com.springfanclub.beadando.resources;
 
 import bussiness.Reservation;
+import bussiness.Table;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.json.JSONObject;
 import service.ReservationListService;
 import service.TableListService;
-
-import java.sql.Time;
-import java.time.LocalTime;
-import java.util.Date;
 
 /**
  *
@@ -20,11 +17,11 @@ import java.util.Date;
 public class JakartaEE9Resource {
 
     @GET
-    @Path("getTables")
+    @Path("tables")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTables() {
         return Response
-                .ok(TableListService.getFreeTables().toString())
+                .ok(TableListService.getTables().toString())
                 .build();
     }
 
@@ -36,22 +33,25 @@ public class JakartaEE9Resource {
         Boolean result = ReservationListService.add(data);
 
         JSONObject obj = new JSONObject();
-        obj.put("added", result);
+        obj.put("success", result);
 
         return Response
                 .ok(obj.toString())
                 .build();
     }
 
-    @GET
-    @Path("test")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response test() {
+    @POST
+    @Path("newTable")
+    @Produces (MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response newTable(Table data) {
+        Boolean result = TableListService.add(data);
 
-        ReservationListService.add(new Reservation(1, 1, 18, "John", "john@email.com"));
+        JSONObject obj = new JSONObject();
+        obj.put("success", result);
 
         return Response
-                .ok(TableListService.getFreeTables().toString())
+                .ok(obj.toString())
                 .build();
     }
 }

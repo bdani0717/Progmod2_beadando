@@ -3,29 +3,31 @@ package view;
 import bussiness.Table;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class TableView {
     public String tableId;
     public String seats;
-    public String tableState;
+    public ArrayList<String> availability;
 
-//    public TableView(String tableId, String seats, String tableState) {
-//        this.tableId = tableId;
-//        this.seats = seats;
-//        this.tableState = tableState;
-//    }
-
-    public TableView(Table table) {
+    public TableView(Table table, ArrayList<String> availability) {
         this.tableId = table.getTableId().toString();
         this.seats = table.getSeats().toString();
-        this.tableState = table.getTableState().toString();
+        this.availability = availability;
     }
 
     public JSONObject getJson() {
         JSONObject table = new JSONObject();
 
-        table.put("tabelId", this.tableId);
+        table.put("tableId", this.tableId);
         table.put("seats", this.seats);
-        table.put("tabelState", this.tableState);
+
+        for(int i = 0; i < this.availability.size(); i++) {
+            int startTime = i + 8;
+            int endTime = startTime + 1;
+            String time = startTime + ":00-" + endTime + ":00";
+            table.put(time, this.availability.get(i));
+        }
 
         return table;
     }

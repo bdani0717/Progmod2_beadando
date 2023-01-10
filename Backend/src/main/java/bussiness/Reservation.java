@@ -58,7 +58,7 @@ public class Reservation {
     }
 
     public void setReservationTime(Integer reservationTime) {
-        if(reservationTime < 0 || reservationTime > 23) {
+        if(reservationTime < 8 || reservationTime > 20) {
             return;
         } else {
             this.reservationTime = reservationTime;
