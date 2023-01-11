@@ -6,6 +6,7 @@ import bussiness.TableStateEnum;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
+import org.json.JSONObject;
 
 import java.io.File;
 
@@ -13,26 +14,33 @@ public class ReservationListService {
 
     private static final String pathToXml = "reservationlist.xml";
 
-    public static Boolean add(Reservation reservation) {
+    public static JSONObject add(Reservation reservation) {
+        JSONObject result = new JSONObject();
+
         try {
             ReservationList reservationList = readReservationListFromXml();
 
             for(Reservation r : reservationList.getList()) {
                 if(r.getTableId() == reservation.getTableId() &&
                         r.getReservationTime() == reservation.getReservationTime()) {
-                    return false;
+                    result.put("status", "conflict");
+                    return result;
                 }
             }
 
             TableListService.setTableState(reservation.getTableId(), TableStateEnum.Reserved);
             reservationList.getList().add(reservation);
 
-            return saveReservationListToXml(reservationList);
+            if(saveReservationListToXml(reservationList)) {
+                result.put("status", "success");
+                return result;
+            }
         } catch (Exception e) {
             System.out.println(e.toString());
         }
 
-        return false;
+        result.put("status", "failed");
+        return result;
     }
 
     public static ReservationList getReservationsByTableId(Integer tableId) {
@@ -49,6 +57,24 @@ public class ReservationListService {
         }
 
         return reservationList;
+    }
+
+    public static Boolean delete(int reservationId) {
+
+        try {
+            ReservationList reservationList = readReservationListFromXml();
+
+            for(int i = 0; i < reservationList.getList().size(); i++) {
+                if(reservationList.getList().get(i).getReservationId() == reservationId) {
+                    reservationList.getList().remove(i);
+                    return saveReservationListToXml(reservationList);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+        return false;
     }
 
 
@@ -74,6 +100,7 @@ public class ReservationListService {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(ReservationList.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             File file = new File(ReservationListService.pathToXml);
             marshaller.marshal(reservationList, file);

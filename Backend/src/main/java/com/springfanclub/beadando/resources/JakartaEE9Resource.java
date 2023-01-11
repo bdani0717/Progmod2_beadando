@@ -30,7 +30,19 @@ public class JakartaEE9Resource {
     @Produces (MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newReservation(Reservation data) {
-        Boolean result = ReservationListService.add(data);
+        JSONObject result = ReservationListService.add(data);
+
+        return Response
+                .ok(result.toString())
+                .build();
+    }
+
+    @POST
+    @Path("newTable")
+    @Produces (MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response newTable(Table data) {
+        Boolean result = TableListService.add(data);
 
         JSONObject obj = new JSONObject();
         obj.put("success", result);
@@ -41,11 +53,11 @@ public class JakartaEE9Resource {
     }
 
     @POST
-    @Path("newTable")
+    @Path("deleteReservation")
     @Produces (MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response newTable(Table data) {
-        Boolean result = TableListService.add(data);
+    public Response deleteReservation(int reservationId) {
+        Boolean result = ReservationListService.delete(reservationId);
 
         JSONObject obj = new JSONObject();
         obj.put("success", result);

@@ -22,11 +22,14 @@ public class TableView {
         table.put("tableId", this.tableId);
         table.put("seats", this.seats);
 
-        for(int i = 0; i < this.availability.size(); i++) {
-            int startTime = i + 8;
-            int endTime = startTime + 1;
-            String time = startTime + ":00-" + endTime + ":00";
-            table.put(time, this.availability.get(i));
+        for(Integer i = 0; i < this.availability.size(); i++) {
+//            int startTime = i + 8;
+//            int endTime = startTime + 1;
+//            char timeAsChar = 'a';
+//            timeAsChar += i;
+//            String time = startTime + "_" + endTime;
+//            String time = "" + timeAsChar;
+            table.put(i.toString(), this.availability.get(i));
         }
 
         return table;

@@ -96,6 +96,7 @@ public class TableListService {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(TableList.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             File file = new File(TableListService.pathToXml);
             marshaller.marshal(tableList, file);
