@@ -1,11 +1,13 @@
 com\springfanclub\beadando\resources\JakartaEE9Resource.class
 view\TableView.class
+bussiness\ITableList.class
 bussiness\ReservationList.class
 service\TableListService.class
 bussiness\User.class
 bussiness\Table.class
-bussiness\TableStateEnum.class
-com\springfanclub\beadando\JakartaRestConfiguration.class
 bussiness\TableList.class
 bussiness\Reservation.class
 service\ReservationListService.class
+bussiness\IReservationList.class
+bussiness\TableStateEnum.class
+com\springfanclub\beadando\JakartaRestConfiguration.class

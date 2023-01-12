@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @XmlRootElement(name = "tableList")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class TableList {
+public class TableList implements ITableList {
 
     @XmlElement(name = "table")
     private ArrayList<Table> tableList;
@@ -18,8 +18,8 @@ public class TableList {
         this.tableList = new ArrayList<>();
     }
 
-    public void add(Table table) {
-        this.tableList.add(table);
+    public Boolean add(Table table) {
+        return this.tableList.add(table);
     }
 
     public ArrayList<Table> getList() {

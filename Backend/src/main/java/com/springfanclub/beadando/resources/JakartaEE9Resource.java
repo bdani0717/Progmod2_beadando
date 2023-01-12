@@ -56,14 +56,11 @@ public class JakartaEE9Resource {
     @Path("deleteReservation")
     @Produces (MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response deleteReservation(int reservationId) {
-        Boolean result = ReservationListService.delete(reservationId);
-
-        JSONObject obj = new JSONObject();
-        obj.put("success", result);
+    public Response deleteReservation(Integer reservationId) {
+        JSONObject result = ReservationListService.delete(reservationId);
 
         return Response
-                .ok(obj.toString())
+                .ok(result.toString())
                 .build();
     }
 }

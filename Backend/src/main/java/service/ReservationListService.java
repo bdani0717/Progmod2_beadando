@@ -59,22 +59,27 @@ public class ReservationListService {
         return reservationList;
     }
 
-    public static Boolean delete(int reservationId) {
+    public static JSONObject delete(Integer reservationId) {
+        JSONObject result = new JSONObject();
 
         try {
             ReservationList reservationList = readReservationListFromXml();
 
-            for(int i = 0; i < reservationList.getList().size(); i++) {
-                if(reservationList.getList().get(i).getReservationId() == reservationId) {
-                    reservationList.getList().remove(i);
-                    return saveReservationListToXml(reservationList);
-                }
+            result.put("deleteStatus", reservationList.removeById(reservationId));
+
+            if(saveReservationListToXml(reservationList)) {
+                result.put("saveStatus", "saved");
+                return result;
             }
+
+
         } catch (Exception e) {
             System.out.println(e.toString());
+            result.put("error", e.toString());
         }
 
-        return false;
+        result.put("saveStatus", "failed to save");
+        return result;
     }
 
 
